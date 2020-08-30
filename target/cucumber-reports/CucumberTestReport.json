@@ -1,0 +1,386 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 178900,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Hooks.before(Scenario)"
+            }
+          }
+        ],
+        "line": 223,
+        "name": "User submits the application and reviews submission",
+        "description": "",
+        "id": "govttech-login;user-submits-the-application-and-reviews-submission;;2",
+        "after": [
+          {
+            "result": {
+              "duration": 50300,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Hooks.afterscenario(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 8463678400,
+              "status": "passed"
+            },
+            "line": 200,
+            "name": "user opens the GovtTech URL with \"public\" and \"Let$BeC001\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "public",
+                  "offset": 34
+                },
+                {
+                  "val": "Let$BeC001",
+                  "offset": 47
+                }
+              ],
+              "location": "StepDefinitions.userOpensTheGovtTechURLWithAnd(String,String)"
+            },
+            "matchedColumns": [
+              0,
+              1
+            ],
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 1536120200,
+              "status": "passed"
+            },
+            "line": 201,
+            "name": "User logs in to corpass with \"G3267797W\" and \"Sneha Shah\" and \"A12LL1368E\" and \"Acceptor\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "G3267797W",
+                  "offset": 30
+                },
+                {
+                  "val": "Sneha Shah",
+                  "offset": 46
+                },
+                {
+                  "val": "A12LL1368E",
+                  "offset": 63
+                },
+                {
+                  "val": "Acceptor",
+                  "offset": 80
+                }
+              ],
+              "location": "StepDefinitions.userLogsInToCorpassWithAndAndAnd(String,String,String,String)"
+            },
+            "matchedColumns": [
+              2,
+              3,
+              4,
+              5
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 16039275800,
+              "status": "passed"
+            },
+            "line": 202,
+            "name": "User clicks on My Grants and Get new Grant with \"Dashboard\" and \"Get new grant\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Dashboard",
+                  "offset": 49
+                },
+                {
+                  "val": "Get new grant",
+                  "offset": 65
+                }
+              ],
+              "location": "StepDefinitions.userClicksOnMyGrantsAndGetNewGrantWithAnd(String,String)"
+            },
+            "matchedColumns": [
+              6,
+              7
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 368364700,
+              "status": "passed"
+            },
+            "line": 203,
+            "name": "User selects \"IT\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "IT",
+                  "offset": 14
+                }
+              ],
+              "location": "StepDefinitions.userSelects(String)"
+            },
+            "matchedColumns": [
+              8
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 70504300,
+              "status": "passed"
+            },
+            "line": 204,
+            "name": "User selects the \"International Expansion\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "International Expansion",
+                  "offset": 18
+                }
+              ],
+              "location": "StepDefinitions.userSelectsThe(String)"
+            },
+            "matchedColumns": [
+              9
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 160553900,
+              "status": "passed"
+            },
+            "line": 205,
+            "name": "User applies for \"Market Readiness Assistance\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Market Readiness Assistance",
+                  "offset": 18
+                }
+              ],
+              "location": "StepDefinitions.userAppliesFor(String)"
+            },
+            "matchedColumns": [
+              10
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 45394637100,
+              "status": "passed"
+            },
+            "line": 206,
+            "name": "user fills up Application form with \"react-eligibility-sg_registered_check\" and \"react-eligibility-turnover_check\" and \"react-eligibility-global_hq_check\" and \"react-eligibility-new_target_market_check\" and \"react-eligibility-started_project_check\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "react-eligibility-sg_registered_check",
+                  "offset": 37
+                },
+                {
+                  "val": "react-eligibility-turnover_check",
+                  "offset": 81
+                },
+                {
+                  "val": "react-eligibility-global_hq_check",
+                  "offset": 120
+                },
+                {
+                  "val": "react-eligibility-new_target_market_check",
+                  "offset": 160
+                },
+                {
+                  "val": "react-eligibility-started_project_check",
+                  "offset": 208
+                }
+              ],
+              "location": "StepDefinitions.userFillsUpApplicationFormWithAndAndAndAnd(String,String,String,String,String)"
+            },
+            "matchedColumns": [
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 305130500,
+              "status": "passed"
+            },
+            "line": 207,
+            "name": "User clicks on Next Button",
+            "match": {
+              "location": "StepDefinitions.userClicksOnNextButton()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 3141603800,
+              "status": "passed"
+            },
+            "line": 208,
+            "name": "User fills up contact details form",
+            "match": {
+              "location": "StepDefinitions.userFillsUpContactDetailsForm()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 64409900,
+              "status": "passed"
+            },
+            "line": 209,
+            "name": "User clicks on Next Button",
+            "match": {
+              "location": "StepDefinitions.userClicksOnNextButton()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 43694873800,
+              "status": "passed"
+            },
+            "line": 210,
+            "name": "user fills up proposal section",
+            "match": {
+              "location": "StepDefinitions.userFillsUpProposalSection()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 1936232000,
+              "status": "passed"
+            },
+            "line": 211,
+            "name": "User clicks on Next Button",
+            "match": {
+              "location": "StepDefinitions.userClicksOnNextButton()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 1616929000,
+              "status": "passed"
+            },
+            "line": 212,
+            "name": "user fills up business impact section",
+            "match": {
+              "location": "StepDefinitions.userFillsUpBusinessImpactSection()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 62825100,
+              "status": "passed"
+            },
+            "line": 213,
+            "name": "User clicks on Next Button",
+            "match": {
+              "location": "StepDefinitions.userClicksOnNextButton()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2617637900,
+              "status": "passed"
+            },
+            "line": 214,
+            "name": "User provides details of cost",
+            "match": {
+              "location": "StepDefinitions.userProvidesDetailsOfCost()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 97608800,
+              "status": "passed"
+            },
+            "line": 215,
+            "name": "User clicks on Next Button",
+            "match": {
+              "location": "StepDefinitions.userClicksOnNextButton()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2059420200,
+              "status": "passed"
+            },
+            "line": 216,
+            "name": "User reviews the form",
+            "match": {
+              "location": "StepDefinitions.userReviewsTheForm()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 7418125000,
+              "error_message": "org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//h2[text()\u003d\u0027Submit Your Proposal\u0027]\"}\n  (Session info: chrome\u003d85.0.4183.83)\n  (Driver info: chromedriver\u003d84.0.4147.30 (48b3e868b4cc0aa7e8149519690b6f6949e110a8-refs/branch-heads/4147@{#310}),platform\u003dWindows NT 10.0.18362 x86_64) (WARNING: The server did not provide any stacktrace information)\nCommand duration or timeout: 5.03 seconds\nFor documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html\nBuild info: version: \u00272.45.0\u0027, revision: \u00275017cb8e7ca8e37638dc3091b2440b90a1d8686f\u0027, time: \u00272015-02-27 09:10:26\u0027\nSystem info: host: \u0027DESKTOP-RITQEUO\u0027, ip: \u0027192.168.1.94\u0027, os.name: \u0027Windows 10\u0027, os.arch: \u0027amd64\u0027, os.version: \u002710.0\u0027, java.version: \u00271.8.0_261\u0027\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCapabilities [{mobileEmulationEnabled\u003dfalse, timeouts\u003d{implicit\u003d0, pageLoad\u003d300000, script\u003d30000}, hasTouchScreen\u003dfalse, platform\u003dXP, acceptSslCerts\u003dfalse, goog:chromeOptions\u003d{debuggerAddress\u003dlocalhost:54144}, acceptInsecureCerts\u003dfalse, webStorageEnabled\u003dtrue, browserName\u003dchrome, takesScreenshot\u003dtrue, javascriptEnabled\u003dtrue, setWindowRect\u003dtrue, unexpectedAlertBehaviour\u003dignore, applicationCacheEnabled\u003dfalse, rotatable\u003dfalse, networkConnectionEnabled\u003dfalse, chrome\u003d{chromedriverVersion\u003d84.0.4147.30 (48b3e868b4cc0aa7e8149519690b6f6949e110a8-refs/branch-heads/4147@{#310}), userDataDir\u003dC:\\Users\\hp\\AppData\\Local\\Temp\\scoped_dir18048_669800730}, takesHeapSnapshot\u003dtrue, pageLoadStrategy\u003dnormal, strictFileInteractability\u003dfalse, databaseEnabled\u003dfalse, handlesAlerts\u003dtrue, version\u003d85.0.4183.83, browserConnectionEnabled\u003dfalse, proxy\u003d{}, nativeEvents\u003dtrue, locationContextEnabled\u003dtrue, cssSelectorsEnabled\u003dtrue, webauthn:virtualAuthenticators\u003dtrue}]\nSession ID: b7f1cafd2e97f0e85c9fea2131dd10ed\n*** Element info: {Using\u003dxpath, value\u003d//h2[text()\u003d\u0027Submit Your Proposal\u0027]}\r\n\tat sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\r\n\tat sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)\r\n\tat sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\r\n\tat java.lang.reflect.Constructor.newInstance(Constructor.java:423)\r\n\tat org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:204)\r\n\tat org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:156)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:599)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:449)\r\n\tat org.openqa.selenium.By$ByXPath.findElement(By.java:357)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:344)\r\n\tat pages.LoginPage.verifyerrors(LoginPage.java:524)\r\n\tat stepdefs.StepDefinitions.userVerifiesTheErrorsInForm(StepDefinitions.java:132)\r\n\tat ✽.And User verifies the errors in form(login.feature:217)\r\n",
+              "status": "failed"
+            },
+            "line": 217,
+            "name": "User verifies the errors in form",
+            "match": {
+              "location": "StepDefinitions.userVerifiesTheErrorsInForm()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 218,
+            "name": "User reviews submission",
+            "match": {
+              "location": "StepDefinitions.userReviewsSubmission()"
+            },
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "line": 198,
+            "name": "@BGP"
+          }
+        ]
+      }
+    ],
+    "name": "GovtTech Login",
+    "description": "",
+    "id": "govttech-login",
+    "keyword": "Feature",
+    "uri": "login.feature"
+  }
+]
