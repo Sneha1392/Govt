@@ -445,13 +445,11 @@ private static WebElement fyienddate;
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click();", officespacerental);
 
-        //WebDriverWait wait= new WebDriverWait(driver,10);
-       // wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@id='react-project_cost-office_rentals-add-item']")));
-     WebElement addnewitembtn=driver.findElement(By.xpath("//*[@id=\"react-project_cost-office_rentals-add-item\"]"));
+       
+     WebElement addnewitembtn=driver.findElement(By.xpath("//*[@id='react-project_cost-office_rentals-add-item']"));
     executor.executeScript("arguments[0].click();", addnewitembtn);
 
-    // Actions a= new Actions(driver);
-     //a.moveToElement(addnewitembtn).click().perform();
+   
         driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
         WebElement descriptionforrental= driver.findElement(By.xpath("//textarea[@id='react-project_cost-office_rentals-0-description']"));
         descriptionforrental.sendKeys("Testing");
@@ -482,10 +480,7 @@ public void verifynooferrors()
    List<WebElement> errors= driver.findElements(By.xpath("//span[@class='label label-error']"));
    int nooferrors=errors.size();
    log.info("Total errors in form: "+nooferrors);
-   /*if(nooferrors==0)
-   {
 
-   }*/
 
 }
 public void declarereview()
@@ -551,8 +546,7 @@ entity.sendKeys("");
   actions.moveToElement(targetmarket).click().perform();
     actions.sendKeys(Keys.DOWN).build().perform();
     actions.sendKeys(Keys.ENTER).build().perform();
-    //percentage.sendKeys("");
-    //percentage.sendKeys("12");
+
 
     actions.moveToElement(percentage).click().perform();
     actions.sendKeys("12");
