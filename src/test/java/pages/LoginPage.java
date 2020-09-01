@@ -18,9 +18,11 @@ import org.testng.Assert;
 import java.awt.*;
 import java.io.IOException;
 import java.sql.Time;
-import java.util.Iterator;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
+import java.util.*;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
@@ -63,7 +65,7 @@ private static WebElement email;
     @FindBy(how = How.XPATH, using = "//input[@id='react-contact_info-secondary_email']")
     private static WebElement altemail;
 
-    @FindBy(how = How.XPATH, using ="//button[@id='review-btn']")
+    @FindBy(how = How.XPATH, using ="//*[@id='review-btn']")
     private static WebElement reviewbtn;
 
 @FindBy(how = How.XPATH,using = "//input[@id='react-contact_info-correspondence_address-block']")
@@ -109,7 +111,7 @@ private static WebElement targetmarket;
 @FindBy(how = How.XPATH, using = "//input[@id='react-project-entity_type']")
 private static WebElement entity;
 
-@FindBy(how = How.XPATH, using = "//input[@id='react-project-shareholding_percentage']")
+@FindBy(how = How.XPATH, using = "//*[@id='react-project-shareholding_percentage']")
 private static WebElement percentage;
 
 @FindBy(how = How.XPATH, using = "//input[@id='react-project_impact-fy_end_date_0']")
@@ -179,6 +181,7 @@ private static WebElement fyienddate;
 
     public void selectmarketgrant(String marketgrant) throws InterruptedException {
         Actions a= new Actions(driver);
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
         WebElement market=driver.findElement(By.xpath(sectors.replace(Sector,marketgrant)));
         market.click();
 
@@ -234,8 +237,7 @@ private static WebElement fyienddate;
     {
         driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
         Actions a=new Actions(driver);
-        WebElement ques1=driver.findElement(By.xpath(String.format(yes.replace(yesoption,q1))));
-        a.moveToElement(ques1).click().perform();
+
         WebElement ques2=driver.findElement(By.xpath(String.format(yes.replace(yesoption,q2))));
         a.moveToElement(ques2).click().perform();
         WebElement ques3=driver.findElement(By.xpath(String.format(yes.replace(yesoption,q3))));
@@ -244,6 +246,9 @@ private static WebElement fyienddate;
         a.moveToElement(ques4).click().perform();
         WebElement ques5=driver.findElement(By.xpath(String.format(yes.replace(yesoption,q5))));
         a.moveToElement(ques5).click().perform();
+
+        WebElement ques1=driver.findElement(By.xpath(String.format(yes.replace(yesoption,q1))));
+        a.moveToElement(ques1).click().perform();
 
     }
 
@@ -388,6 +393,18 @@ private static WebElement fyienddate;
         projecttitle.sendKeys("");
         projecttitle.sendKeys("Grant");
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        SimpleDateFormat df = new SimpleDateFormat("dd MMM yyyy");
+        Date dt = new Date();
+        Calendar cl = Calendar.getInstance();
+        cl.setTime(dt);;
+        cl.add(Calendar.DAY_OF_YEAR, 1);
+        dt=cl.getTime();
+        String str = df.format(dt);
+
+
+
+
+
         Robot rbt= new Robot();
 
         startdate.sendKeys("04 Aug 2020");
@@ -396,7 +413,7 @@ private static WebElement fyienddate;
         startdate.sendKeys(Keys.chord(Keys.CONTROL, "a"));
         startdate.sendKeys(Keys.BACK_SPACE);
       //  startdate.sendKeys(Keys.DELETE);
-        startdate.sendKeys("01 Sep 2020");
+        startdate.sendKeys(str);
         //End date in before start date
         enddate.sendKeys("30 Aug 2020");
         driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
@@ -445,11 +462,13 @@ private static WebElement fyienddate;
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click();", officespacerental);
 
-       
-     WebElement addnewitembtn=driver.findElement(By.xpath("//*[@id='react-project_cost-office_rentals-add-item']"));
+        //WebDriverWait wait= new WebDriverWait(driver,10);
+       // wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@id='react-project_cost-office_rentals-add-item']")));
+     WebElement addnewitembtn=driver.findElement(By.xpath("//*[@id=\"react-project_cost-office_rentals-add-item\"]"));
     executor.executeScript("arguments[0].click();", addnewitembtn);
 
-   
+    // Actions a= new Actions(driver);
+     //a.moveToElement(addnewitembtn).click().perform();
         driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
         WebElement descriptionforrental= driver.findElement(By.xpath("//textarea[@id='react-project_cost-office_rentals-0-description']"));
         descriptionforrental.sendKeys("Testing");
@@ -480,7 +499,10 @@ public void verifynooferrors()
    List<WebElement> errors= driver.findElements(By.xpath("//span[@class='label label-error']"));
    int nooferrors=errors.size();
    log.info("Total errors in form: "+nooferrors);
+   /*if(nooferrors==0)
+   {
 
+   }*/
 
 }
 public void declarereview()
@@ -547,23 +569,30 @@ entity.sendKeys("");
     actions.sendKeys(Keys.DOWN).build().perform();
     actions.sendKeys(Keys.ENTER).build().perform();
 
+  actions.moveToElement(percentage).click().perform();
+  actions.sendKeys("");
+  actions.sendKeys("12");
 
-    actions.moveToElement(percentage).click().perform();
-    actions.sendKeys("12");
+    //actions.moveToElement(percentage).click().perform();
+    //actions.sendKeys("12");
 
 
 clicksave();
 
     //Navigate back to Declare & Review
     driver.findElement(By.xpath("//span[text()='Declare & Review']")).click();
+    ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
     reviewbtn.click();
+    //actions.moveToElement(reviewbtn).click().perform();
 
 }
 public void reviewsubmission()
 {
-  driver.findElement(By.xpath("//h3[text()='Review Your Application']"));
-  String eligibility=driver.findElement(By.xpath("//*[@id='react-eligibility-sg_registered_check']")).getAttribute("value");
-  Assert.assertEquals(eligibility,"Yes");
+  driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+    driver.findElement(By.xpath("//h3[text()='Review Your Application']"));
+    driver.findElement(By.xpath("//*[@id='js-app']/div/div[2]/div[1]/div/div/ul/li[2]/a/i")).click();
+  String eligibility=driver.findElement(By.xpath("//*[@id='react-eligibility-sg_registered_check']")).getText();
+  Assert.assertEquals(eligibility,"No");
   String nameonreview=driver.findElement(By.xpath("//div[@id='react-contact_info-name']")).getText();
   Assert.assertEquals(nameonreview,"Sneha");
   String proposalstartdate= driver.findElement(By.xpath("//div[@id='react-project-start_date']")).getText();
