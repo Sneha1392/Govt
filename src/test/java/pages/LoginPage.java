@@ -1,8 +1,12 @@
 package pages;
 
+import org.apache.tools.ant.taskdefs.Java;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.HasInputDevices;
+import org.openqa.selenium.interactions.Mouse;
+import org.openqa.selenium.interactions.internal.Coordinates;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
@@ -13,6 +17,7 @@ import org.testng.Assert;
 
 import java.awt.*;
 import java.io.IOException;
+import java.sql.Time;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -94,10 +99,11 @@ private static WebElement Projduration;
 @FindBy(how = How.XPATH, using = "//textarea['react-project-description']")
 private static WebElement description;
 
-@FindBy(how = How.XPATH, using = "//span[@id='react-select-project-activity--value']")
+//@FindBy(how = How.XPATH, using = "//span[@id='react-select-project-activity--value']")
+@FindBy(how = How.XPATH, using = "//*[@id='react-select-project-activity--value']/div[1]")
 private static WebElement activity;
 
-@FindBy(how = How.XPATH, using = "//span[@id='react-select-project-primary_market--value']//following-sibling::span[@class='Select-arrow-zone']")
+@FindBy(how = How.XPATH, using = "//*[@id='react-select-project-primary_market--value']/div[1]")
 private static WebElement targetmarket;
 
 @FindBy(how = How.XPATH, using = "//input[@id='react-project-entity_type']")
@@ -523,25 +529,35 @@ public void verifyerrors()
     WebElement errsidebar= driver.findElement(By.xpath("//span[@class='label label-error']"));
     log.info("No of errors: "+errsidebar.getText());
  driver.findElement(By.xpath("//h2[text()='Submit Your Proposal']"));
-//activity.sendKeys(Keys.DOWN);
-//activity.sendKeys(Keys.RETURN);
 
-    a.moveToElement(activity).click().perform();
-    activity.sendKeys("Market Entry");
-    activity.sendKeys(Keys.ENTER);
+    WebElement yes=driver.findElement(By.xpath("//*[@id='js-app']//div[2]/label[1]/span[1]"));
+    a.moveToElement(yes).click().perform();
+    Actions actions = new Actions(driver);
+    actions.moveToElement(activity).click().perform();
 
+    actions.sendKeys(Keys.DOWN).build().perform();
+    actions.sendKeys(Keys.ENTER).build().perform();
+driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+entity.sendKeys("");
 
  // a.moveToElement(activity).click().sendKeys("Market Entry");
-    entity.sendKeys("asdfghjklqwertyuiopzxcvbnm");
+   entity.sendKeys("asdfghjklqwertyuiopzxcvbnm");
     Assert.assertEquals("asdfghjklqwertyuiopz",entity.getAttribute("value"));
     //Validating % between 0-100
     percentage.sendKeys("123");
-    Assert.assertEquals("Your percentage should fall between 0 and 100",errmsg.getText());
-    percentage.sendKeys("12");
-  a.moveToElement(targetmarket).click().sendKeys("India");
+  driver.findElement(By.xpath("//label[@id='react-project-primary_market-label']")).click();
+    Assert.assertEquals(driver.findElement(By.xpath("//p[@id='react-project-shareholding_percentage-alert']")).getText(),"Your percentage should fall between 0 and 100");
 
-  WebElement yes=driver.findElement(By.xpath("//*[@id='react-project-is_first_time_expand-true']"));
-    a.moveToElement(yes).click().perform();
+  actions.moveToElement(targetmarket).click().perform();
+    actions.sendKeys(Keys.DOWN).build().perform();
+    actions.sendKeys(Keys.ENTER).build().perform();
+    //percentage.sendKeys("");
+    //percentage.sendKeys("12");
+
+    actions.moveToElement(percentage).click().perform();
+    actions.sendKeys("12");
+
+
 clicksave();
 
     //Navigate back to Declare & Review
