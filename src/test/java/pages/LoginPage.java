@@ -1,8 +1,12 @@
 package pages;
 
+import org.apache.tools.ant.taskdefs.Java;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.HasInputDevices;
+import org.openqa.selenium.interactions.Mouse;
+import org.openqa.selenium.interactions.internal.Coordinates;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
@@ -13,9 +17,12 @@ import org.testng.Assert;
 
 import java.awt.*;
 import java.io.IOException;
-import java.util.Iterator;
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
+import java.util.*;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
@@ -58,7 +65,7 @@ private static WebElement email;
     @FindBy(how = How.XPATH, using = "//input[@id='react-contact_info-secondary_email']")
     private static WebElement altemail;
 
-    @FindBy(how = How.XPATH, using ="//button[@id='review-btn']")
+    @FindBy(how = How.XPATH, using ="//*[@id='review-btn']")
     private static WebElement reviewbtn;
 
 @FindBy(how = How.XPATH,using = "//input[@id='react-contact_info-correspondence_address-block']")
@@ -94,16 +101,17 @@ private static WebElement Projduration;
 @FindBy(how = How.XPATH, using = "//textarea['react-project-description']")
 private static WebElement description;
 
-@FindBy(how = How.XPATH, using = "//span[@id='react-select-project-activity--value']")
+//@FindBy(how = How.XPATH, using = "//span[@id='react-select-project-activity--value']")
+@FindBy(how = How.XPATH, using = "//*[@id='react-select-project-activity--value']/div[1]")
 private static WebElement activity;
 
-@FindBy(how = How.XPATH, using = "//span[@id='react-select-project-primary_market--value']//following-sibling::span[@class='Select-arrow-zone']")
+@FindBy(how = How.XPATH, using = "//*[@id='react-select-project-primary_market--value']/div[1]")
 private static WebElement targetmarket;
 
 @FindBy(how = How.XPATH, using = "//input[@id='react-project-entity_type']")
 private static WebElement entity;
 
-@FindBy(how = How.XPATH, using = "//input[@id='react-project-shareholding_percentage']")
+@FindBy(how = How.XPATH, using = "//*[@id='react-project-shareholding_percentage']")
 private static WebElement percentage;
 
 @FindBy(how = How.XPATH, using = "//input[@id='react-project_impact-fy_end_date_0']")
@@ -173,6 +181,7 @@ private static WebElement fyienddate;
 
     public void selectmarketgrant(String marketgrant) throws InterruptedException {
         Actions a= new Actions(driver);
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
         WebElement market=driver.findElement(By.xpath(sectors.replace(Sector,marketgrant)));
         market.click();
 
@@ -228,8 +237,7 @@ private static WebElement fyienddate;
     {
         driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
         Actions a=new Actions(driver);
-        WebElement ques1=driver.findElement(By.xpath(String.format(yes.replace(yesoption,q1))));
-        a.moveToElement(ques1).click().perform();
+
         WebElement ques2=driver.findElement(By.xpath(String.format(yes.replace(yesoption,q2))));
         a.moveToElement(ques2).click().perform();
         WebElement ques3=driver.findElement(By.xpath(String.format(yes.replace(yesoption,q3))));
@@ -238,6 +246,9 @@ private static WebElement fyienddate;
         a.moveToElement(ques4).click().perform();
         WebElement ques5=driver.findElement(By.xpath(String.format(yes.replace(yesoption,q5))));
         a.moveToElement(ques5).click().perform();
+
+        WebElement ques1=driver.findElement(By.xpath(String.format(yes.replace(yesoption,q1))));
+        a.moveToElement(ques1).click().perform();
 
     }
 
@@ -382,6 +393,18 @@ private static WebElement fyienddate;
         projecttitle.sendKeys("");
         projecttitle.sendKeys("Grant");
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        SimpleDateFormat df = new SimpleDateFormat("dd MMM yyyy");
+        Date dt = new Date();
+        Calendar cl = Calendar.getInstance();
+        cl.setTime(dt);;
+        cl.add(Calendar.DAY_OF_YEAR, 1);
+        dt=cl.getTime();
+        String str = df.format(dt);
+
+
+
+
+
         Robot rbt= new Robot();
 
         startdate.sendKeys("04 Aug 2020");
@@ -390,7 +413,7 @@ private static WebElement fyienddate;
         startdate.sendKeys(Keys.chord(Keys.CONTROL, "a"));
         startdate.sendKeys(Keys.BACK_SPACE);
       //  startdate.sendKeys(Keys.DELETE);
-        startdate.sendKeys("01 Sep 2020");
+        startdate.sendKeys(str);
         //End date in before start date
         enddate.sendKeys("30 Aug 2020");
         driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
@@ -523,37 +546,53 @@ public void verifyerrors()
     WebElement errsidebar= driver.findElement(By.xpath("//span[@class='label label-error']"));
     log.info("No of errors: "+errsidebar.getText());
  driver.findElement(By.xpath("//h2[text()='Submit Your Proposal']"));
-//activity.sendKeys(Keys.DOWN);
-//activity.sendKeys(Keys.RETURN);
 
-    a.moveToElement(activity).click().perform();
-    activity.sendKeys("Market Entry");
-    activity.sendKeys(Keys.ENTER);
+    WebElement yes=driver.findElement(By.xpath("//*[@id='js-app']//div[2]/label[1]/span[1]"));
+    a.moveToElement(yes).click().perform();
+    Actions actions = new Actions(driver);
+    actions.moveToElement(activity).click().perform();
 
+    actions.sendKeys(Keys.DOWN).build().perform();
+    actions.sendKeys(Keys.ENTER).build().perform();
+driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+entity.sendKeys("");
 
  // a.moveToElement(activity).click().sendKeys("Market Entry");
-    entity.sendKeys("asdfghjklqwertyuiopzxcvbnm");
+   entity.sendKeys("asdfghjklqwertyuiopzxcvbnm");
     Assert.assertEquals("asdfghjklqwertyuiopz",entity.getAttribute("value"));
     //Validating % between 0-100
     percentage.sendKeys("123");
-    Assert.assertEquals("Your percentage should fall between 0 and 100",errmsg.getText());
-    percentage.sendKeys("12");
-  a.moveToElement(targetmarket).click().sendKeys("India");
+  driver.findElement(By.xpath("//label[@id='react-project-primary_market-label']")).click();
+    Assert.assertEquals(driver.findElement(By.xpath("//p[@id='react-project-shareholding_percentage-alert']")).getText(),"Your percentage should fall between 0 and 100");
 
-  WebElement yes=driver.findElement(By.xpath("//*[@id='react-project-is_first_time_expand-true']"));
-    a.moveToElement(yes).click().perform();
+  actions.moveToElement(targetmarket).click().perform();
+    actions.sendKeys(Keys.DOWN).build().perform();
+    actions.sendKeys(Keys.ENTER).build().perform();
+
+  actions.moveToElement(percentage).click().perform();
+  actions.sendKeys("");
+  actions.sendKeys("12");
+
+    //actions.moveToElement(percentage).click().perform();
+    //actions.sendKeys("12");
+
+
 clicksave();
 
     //Navigate back to Declare & Review
     driver.findElement(By.xpath("//span[text()='Declare & Review']")).click();
+    ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
     reviewbtn.click();
+    //actions.moveToElement(reviewbtn).click().perform();
 
 }
 public void reviewsubmission()
 {
-  driver.findElement(By.xpath("//h3[text()='Review Your Application']"));
-  String eligibility=driver.findElement(By.xpath("//*[@id='react-eligibility-sg_registered_check']")).getAttribute("value");
-  Assert.assertEquals(eligibility,"Yes");
+  driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+    driver.findElement(By.xpath("//h3[text()='Review Your Application']"));
+    driver.findElement(By.xpath("//*[@id='js-app']/div/div[2]/div[1]/div/div/ul/li[2]/a/i")).click();
+  String eligibility=driver.findElement(By.xpath("//*[@id='react-eligibility-sg_registered_check']")).getText();
+  Assert.assertEquals(eligibility,"No");
   String nameonreview=driver.findElement(By.xpath("//div[@id='react-contact_info-name']")).getText();
   Assert.assertEquals(nameonreview,"Sneha");
   String proposalstartdate= driver.findElement(By.xpath("//div[@id='react-project-start_date']")).getText();
