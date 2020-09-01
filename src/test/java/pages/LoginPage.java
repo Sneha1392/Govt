@@ -30,6 +30,8 @@ public class LoginPage {
     static WebDriver driver;
 Logger log= Logger.getLogger(LoginPage.class.getName());
 
+String actualstartdate="";
+
 
 public static String menu= "{$menu}";
 private static String menuselected=String.format("//a[@alt='%s']",menu);
@@ -400,6 +402,7 @@ private static WebElement fyienddate;
         cl.add(Calendar.DAY_OF_YEAR, 1);
         dt=cl.getTime();
         String str = df.format(dt);
+        actualstartdate=str;
 
 
 
@@ -565,13 +568,13 @@ entity.sendKeys("");
   driver.findElement(By.xpath("//label[@id='react-project-primary_market-label']")).click();
     Assert.assertEquals(driver.findElement(By.xpath("//p[@id='react-project-shareholding_percentage-alert']")).getText(),"Your percentage should fall between 0 and 100");
 
+  percentage.clear();
+  percentage.sendKeys("12");
+
   actions.moveToElement(targetmarket).click().perform();
     actions.sendKeys(Keys.DOWN).build().perform();
     actions.sendKeys(Keys.ENTER).build().perform();
 
-  actions.moveToElement(percentage).click().perform();
-  actions.sendKeys("");
-  actions.sendKeys("12");
 
     //actions.moveToElement(percentage).click().perform();
     //actions.sendKeys("12");
@@ -596,7 +599,7 @@ public void reviewsubmission()
   String nameonreview=driver.findElement(By.xpath("//div[@id='react-contact_info-name']")).getText();
   Assert.assertEquals(nameonreview,"Sneha");
   String proposalstartdate= driver.findElement(By.xpath("//div[@id='react-project-start_date']")).getText();
-  Assert.assertEquals(proposalstartdate,"29 Aug 2020");
+  Assert.assertEquals(proposalstartdate,actualstartdate);
   WebElement declaration=driver.findElement(By.xpath("//input[@id='react-declaration-info_truthfulness_check']"));
   declaration.click();
   driver.findElement(By.xpath("//button[@id='submit-btn']")).click();
